@@ -1,3 +1,5 @@
+// Será um código legado
+
 // Criando tipo do Item
 type CartItem = { name: string; price: number };
 
