@@ -1,1 +1,2 @@
-console.log('HELLO WORLD');
+// Código será criado sem principios
+// Ao longo das aulas iremos corrigindo
