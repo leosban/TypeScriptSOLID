@@ -2,6 +2,7 @@ import { OrderStatus } from './interfaces/order-status';
 import { Persistency } from '../services/persistency';
 import { Messaging } from '../services/messaging';
 import { ShopCart } from './shopCart';
+import { CustomerOrder } from './interfaces/customer-protocol';
 
 // Criada classe order, que vai precisar de um carrinho de compras
 export class Order {
@@ -15,6 +16,8 @@ export class Order {
     private readonly shopCart: ShopCart,
     private readonly messaging: Messaging,
     private readonly saveOrder: Persistency,
+    // Injetando o tipo CustomerOrder,
+    private readonly customer: CustomerOrder,
   ) {}
 
   get orderStatus(): OrderStatus {
@@ -36,5 +39,12 @@ export class Order {
     this.saveOrder.saveOrder();
 
     this.shopCart.clear();
+
+    // Logando os dados do clientes criados através do tipo customer
+    console.log(
+      'O cliente é:',
+      this.customer.getName(),
+      this.customer.getIDN(),
+    );
   }
 }

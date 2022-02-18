@@ -1,11 +1,15 @@
 // Classes que vão implementar o protocolo de customer
 
 import {
+  CustomerOrder,
   EnterpriseCustomerProtocol,
   IndividualCustomerProtocol,
 } from './interfaces/customer-protocol';
 
-export class IndividualCustomer implements IndividualCustomerProtocol {
+// Implementação da interface 'CustomerOrder'
+export class IndividualCustomer
+  implements IndividualCustomerProtocol, CustomerOrder
+{
   firstName: string;
   lastName: string;
   cpf: string;
@@ -15,14 +19,34 @@ export class IndividualCustomer implements IndividualCustomerProtocol {
     this.lastName = lastName;
     this.cpf = cpf;
   }
+  // Método para obter name e lastName serão usados na Order
+  getName(): string {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  // Método para obter IDN (Identificador único) serão usados na Order
+  getIDN(): string {
+    return this.cpf;
+  }
 }
 
-export class EnterpriseCustomer implements EnterpriseCustomerProtocol {
+// Implementação da interface 'CustomerOrder'
+export class EnterpriseCustomer
+  implements EnterpriseCustomerProtocol, CustomerOrder
+{
   name: string;
   cnpj: string;
 
   constructor(name: string, cnpj: string) {
     this.name = name;
     this.cnpj = cnpj;
+  }
+  // Método para obter name e lastName serão usados na Order
+  getName(): string {
+    return this.name;
+  }
+  // Método para obter IDN (Identificador único) serão usados na Order
+  getIDN(): string {
+    return this.cnpj;
   }
 }

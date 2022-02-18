@@ -2,9 +2,7 @@
 // instanciamos classes e etc...
 
 /*
-Interface Segregation Principle (Princípio da segregação de Interface) - os clientes
-não devem ser forçados a depender de types, interfaces ou membros abstratos
-que não utilizam
+Interface Segregation Principle (Princípio da segregação de Interface) - os clientes não devem ser forçados a depender de types, interfaces ou membros abstratos que não utilizam
 */
 
 import { ShopCart } from './classes/shopCart';
@@ -17,6 +15,8 @@ import {
   NoDiscount,
   TenPercentDiscount,
 } from './classes/discount';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { EnterpriseCustomer, IndividualCustomer } from './classes/customer';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const fiftyPercentDiscount = new FiftyPercentDiscount(); //
@@ -26,7 +26,21 @@ const noDiscount = new NoDiscount();
 const shoppingCart = new ShopCart(noDiscount);
 const messaging = new Messaging();
 const saverOrder = new Persistency();
-const order = new Order(shoppingCart, messaging, saverOrder);
+const individualCustomer = new IndividualCustomer(
+  'Leônidas',
+  'Junior',
+  '111.111.111-11',
+);
+// const enterpriseCustomer = new EnterpriseCustomer(
+//   'Costurart',
+//   'XX.XXX.XXX/0001-XX',
+// );
+const order = new Order(
+  shoppingCart,
+  messaging,
+  saverOrder,
+  individualCustomer,
+);
 
 shoppingCart.addItem(new Product('t-shirt', 39.9));
 shoppingCart.addItem(new Product('jacket', 179.9));
